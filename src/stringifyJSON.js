@@ -7,7 +7,7 @@ var stringifyJSON = function(obj) {
   var output = "";
 
   if(typeof obj === "number") {
-  	output += "" + obj + "";
+      output += "" + obj + "";
   }else if(obj === null) { 
   	output += "" + obj + "";
   }else if(typeof obj === "boolean") {
@@ -20,9 +20,9 @@ var stringifyJSON = function(obj) {
   		output += "]";
   	} else {
   		var i = 0;
-  		while(i <= obj.length) {
-  		output += stringifyJSON(obj[i]);
-  		i++;
+  		while(i < obj.length) {
+  		    i === (obj.length - 1) ? output += stringifyJSON(obj[i]) : output += stringifyJSON(obj[i]) + "," ;
+  		    i++;
   		}
   		output += "]";	
   	}
