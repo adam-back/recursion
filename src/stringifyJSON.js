@@ -7,13 +7,26 @@ var stringifyJSON = function(obj) {
   var output = "";
 
   if(typeof obj === "number") {
-  	return output += "" + obj + "";
+  	output += "" + obj + "";
   }else if(obj === null) { 
-  	return output += "" + obj + "";
+  	output += "" + obj + "";
   }else if(typeof obj === "boolean") {
-  	return output += "" + obj + "";
+  	output += "" + obj + "";
   }else if(typeof obj === "string") {
-  	return output = "\"" + obj + "\"";
+  	output = "\"" + obj + "\"";
+  } else if(Array.isArray(obj)) {
+  	output = "[";
+  	if (obj.length === 0) {
+  		output += "]";
+  	} else {
+  		var i = 0;
+  		while(i <= obj.length) {
+  		output += stringifyJSON(obj[i]);
+  		i++;
+  		}
+  		output += "]";	
+  	}
   }
 
+return output;
 };
