@@ -7,14 +7,13 @@ var stringifyJSON = function(obj) {
   var output = "";
 
   if(typeof obj === "number") {
-  	output += "" + obj + "";
-  	return output;
-  }else if(obj === null) {
-  	output += "" + obj + "";
-  	return output;
+  	return output += "" + obj + "";
+  }else if(obj === null) { 
+  	return output += "" + obj + "";
   }else if(typeof obj === "boolean") {
-  	output += "" + obj + "";
-  	return output;
+  	return output += "" + obj + "";
+  }else if(typeof obj === "string") {
+  	return output = "\"" + obj + "\"";
   }
 
 };
