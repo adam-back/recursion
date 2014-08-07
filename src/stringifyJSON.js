@@ -24,13 +24,13 @@ var stringifyJSON = function(obj) {
 			}
 		}
 		output += "]";	
-	}/*else{
+	}else{
   	output = "{";
-  	if(obj.length)
   	for(var key in obj) {
-
+  		output += stringifyJSON(obj[key]);
   	}
-  }*/
+  	output += "}";
+  }
 
 return output;
 };
