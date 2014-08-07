@@ -6,27 +6,31 @@ var stringifyJSON = function(obj) {
   // your code goes here
   var output = "";
 
-  if(typeof obj === "number") {
+  if(typeof obj === "number"){
       output += "" + obj + "";
-  }else if(obj === null) { 
+  }else if(obj === null){ 
   	output += "" + obj + "";
-  }else if(typeof obj === "boolean") {
+  }else if(typeof obj === "boolean"){
   	output += "" + obj + "";
-  }else if(typeof obj === "string") {
+  }else if(typeof obj === "string"){
   	output = "\"" + obj + "\"";
-  } else if(Array.isArray(obj)) {
+  }else if(Array.isArray(obj)){
   	output = "[";
-  	if (obj.length === 0) {
-  		output += "]";
-  	} else {
-  		var i = 0;
-  		while(i < obj.length) {
-  		    i === (obj.length - 1) ? output += stringifyJSON(obj[i]) : output += stringifyJSON(obj[i]) + "," ;
-  		    i++;
-  		}
-  		output += "]";	
+  	if(obj.length > 0){
+			var i = 0;
+			while(i < obj.length){
+    		i === (obj.length - 1) ? output += stringifyJSON(obj[i]) : output += stringifyJSON(obj[i]) + "," ;
+    		i++;
+			}
+		}
+		output += "]";	
+	}/*else{
+  	output = "{";
+  	if(obj.length)
+  	for(var key in obj) {
+
   	}
-  }
+  }*/
 
 return output;
 };
