@@ -27,9 +27,12 @@ var stringifyJSON = function(obj) {
 	}else{
   	output = "{";
   	for(var key in obj) {
-  		output += stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
+  		output += stringifyJSON(key) + ":" + stringifyJSON(obj[key]) + ",";
   	}
-  	output += "}";
+  	if(output.length > 1){
+  		output = output.slice(0, output.length - 1);
+  	}
+		output += "}"; 
   }
 
 return output;
