@@ -27,7 +27,9 @@ var stringifyJSON = function(obj) {
 	}else{
   	output = "{";
   	for(var key in obj) {
-  		output += stringifyJSON(key) + ":" + stringifyJSON(obj[key]) + ",";
+  		if(key !== "functions" && key !== "undefined") {
+  			output += stringifyJSON(key) + ":" + stringifyJSON(obj[key]) + ",";
+  		}
   	}
   	if(output.length > 1){
   		output = output.slice(0, output.length - 1);
