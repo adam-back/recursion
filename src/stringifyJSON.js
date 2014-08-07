@@ -27,7 +27,7 @@ var stringifyJSON = function(obj) {
 	}else{
   	output = "{";
   	for(var key in obj) {
-  		output += stringifyJSON(obj[key]);
+  		output += stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
   	}
   	output += "}";
   }
