@@ -4,15 +4,18 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className){
-     var matches = [];
-     $('body').each(function(i){
-      if(this.classList == className) {
-        matches.push(this);
-      }
-     });
+var getElementsByClassName = function(className) { 
+    var targeted = className;
+    var output = [];
+     var children = document.body.childNodes;
+     for(var i = 0; i < children.length; i++) {
+        if(children[i].className == targeted) {
+            output.push(children[i]);
+        }
+     }
 
-     return console.log(matches);
+     return output;
+     
    };
 //Go into document.
 //Find the body.
