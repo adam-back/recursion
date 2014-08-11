@@ -8,10 +8,10 @@ var getElementsByClassName = function(className) {
     var targeted = className;
     var output = [];
      var children = document.body.childNodes;
-     //NoteList format.
+     //NodeList format.
      
      for(var i = 0; i < children.length; i++) {
-        if(children[i].className == targeted) {
+        if(children[i].classList == targeted) {
             output.push(children[i]);
         }
      }
