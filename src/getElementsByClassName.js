@@ -5,20 +5,13 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) { 
-    var targeted = className;
-    var output = [];
-     var children = document.body.childNodes;
-     //NodeList format.
-     
-     for(var i = 0; i < children.length; i++) {
-        if(children[i].classList == targeted) {
-            output.push(children[i]);
-        }
-     }
-
-     return output;
-     
-   };
+  var output = [];
+  var currentElement = document.body;
+  if(currentElement.classList.contains(className)) {
+    output.push(currentElement); 
+  }
+   return output;
+};
 //Go into document.
 //Find the body.
 //Search each element for className
