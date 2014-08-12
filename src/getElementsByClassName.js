@@ -13,9 +13,7 @@ var getElementsByClassName = function(className) {
       output.push(elements[i]);
     }
   };
-  
-  var children = elements.childNodes;
-  console.log();
+
   return output;
 };
 //Go into document.
