@@ -5,30 +5,43 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) {
+  //set an output variable with all of the elements which have the classname
   var output = [];
-  var recursion = function(element) {
-    if(element.classList) {
-      for(var i = 0; i < element.classList.length; i++) {
-        if(element.classList[i] === className) {
-          output.push(element);
-        }
-      }
-    }
 
-    if(element.childNodes.length > 0) {
-      for(var a = 0; a < element.childNodes.length; a++) {
-        recursion(element.childNodes[a]);
+  //set a subroutine (recursion) which takes a node as the input
+  var traverseDOM = function(node) {
+    checkClassName(className, node);
+    var children = node.children;
+
+    //if node has children, search them recursively
+    if(children.length > 0) {
+      for(var child = 0; child < node.children.length; child++) {
+        traverseDOM(children[child]);
       }
     }
   };
 
-  recursion(document.body);
+  var checkClassName = function(targetClass, node) {
+    var classes = node.classList;
+    if(classes === undefined) {
+      return false;
+    }
+    //loop through entire list of classes
+    for(var i = 0; i < classes.length; i++) {
+      if(classes[i] === targetClass) {
+        output.push(node);
+        return true;
+      }
+    }
+    //class not found on this node
+    return false;
+  }
 
+  //kick off recursion
+  traverseDOM(document.body);
+  console.log(output);
   return output;
 };
-//Go into document.
-//Find the body.
-//Search bpdy for className
-//
-//Search each element for className
-//	if element has className
+
+//high level
+//search through the DOM for every element with the target className
