@@ -3,33 +3,38 @@
 
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
-  // your code goes here
   var output = "";
 
-  switch(typeof obj) {
-    case 'string':
-      obj.toString();
-      console.log(obj);
-      output += '"'+ obj + '"';
-      break;
-    case 'number':
+  if(typeof obj === "number"){
       output += "" + obj + "";
-      break;
-    case 'boolean':
-      output += "" + obj + "";
-      break;
-    case 'object': 
-      if(obj === null) {
-        output += "" + obj + "";
-        break;
-      } else if(obj === [] || obj === {}) {
-        //recurse
-        output += "" + obj + "";
-        break;
-      } else {
-        break;
-      }
+  }else if(obj === null){ 
+  	output += "" + obj + "";
+  }else if(typeof obj === "boolean"){
+  	output += "" + obj + "";
+  }else if(typeof obj === "string"){
+  	output = "\"" + obj + "\"";
+  }else if(Array.isArray(obj)){
+  	output = "[";
+  	if(obj.length > 0){
+			var i = 0;
+			while(i < obj.length){
+    		i === (obj.length - 1) ? output += stringifyJSON(obj[i]) : output += stringifyJSON(obj[i]) + "," ;
+    		i++;
+			}
+		}
+		output += "]";	
+	}else{
+  	output = "{";
+  	for(var key in obj) {
+  		if(key !== "functions" && key !== "undefined") {
+  			output += stringifyJSON(key) + ":" + stringifyJSON(obj[key]) + ",";
+  		}
+  	}
+  	if(output.length > 1){
+  		output = output.slice(0, output.length - 1);
+  	}
+		output += "}"; 
   }
 
-  return output;
+return output;
 };
